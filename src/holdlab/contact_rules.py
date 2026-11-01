@@ -116,10 +116,11 @@ def wrap(rules: dict, joints: dict) -> dict:
     """joints: {digit: [knuckle, ..., tip]} in the gun's frame (forward, up, left). Each digit in the rule's sign table
     must curl about the rule's axis with the rule's sign, by at least min_curl."""
     w = rules["wrap"]
-    sign_axis = -1 if w["axis"].startswith("-") else 1
-    ax = AXES[w["axis"].lstrip("+-")]
     rows, ok_all = [], True
     for digit, want in w["sign"].items():
+        axis = w.get("digit_axis", {}).get(digit, w["axis"])  # a digit may bend about its own axis (the thumb)
+        sign_axis = -1 if axis.startswith("-") else 1
+        ax = AXES[axis.lstrip("+-")]
         pts = joints.get(digit)
         if not pts or len(pts) < 3:
             rows.append({"digit": digit, "ok": False, "missing": "fewer than 3 joint points"})
@@ -129,7 +130,7 @@ def wrap(rules: dict, joints: dict) -> dict:
         size = math.sqrt(sum(x * x for x in c))
         along = sign_axis * c[ax]
         ok = size >= w["min_curl"] and along * want > 0
-        rows.append({"digit": digit, "curl_axis": [round(x / size, 3) for x in c] if size else None,
+        rows.append({"digit": digit, "axis": axis, "curl_axis": [round(x / size, 3) for x in c] if size else None,
                      "curl_size": round(size, 3), "along_axis": round(along / size, 3) if size else 0.0,
                      "want_sign": want, "ok": bool(ok)})
         ok_all &= ok

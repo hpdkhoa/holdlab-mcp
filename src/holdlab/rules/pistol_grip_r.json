@@ -46,8 +46,10 @@
     "axis": "+up",
     "axis_why": "a pistol grip is wrapped around its own long axis, which runs up toward the bore; MEANING_PLAN Step 3 says 'against the bore', which is across a pistol grip (flagged to the owner)",
     "rule": "MEANING_PLAN Step 3: the fingers curl around the gun's side toward the far side, and the thumb closes from the other side",
-    "sign": {"middle": 1, "ring": 1, "pinky": 1, "thumb": -1},
-    "sign_why": "right hand: a finger runs forward across the front strap, then toward the left side: forward x left = +up. The thumb runs forward along the left side, then in toward the gun (-left): forward x -left = -up",
+    "sign": {"middle": 1, "ring": 1, "pinky": 1, "thumb": 1},
+    "digit_axis": {"thumb": "+left"},
+    "digit_axis_owner": "Owner 2026-11-01: thumb choice \"do 1\": the thumb bends about +left, closing down onto the left side, as measured on the approved M1911A1 hold (+0.91 along left)",
+    "sign_why": "right hand: a finger runs forward across the front strap, then toward the left side: forward x left = +up. The thumb arches forward over the top and closes down onto the left side: forward x -up = +left. Turned upside down about the bore, both up and left change sign, so both fail",
     "min_curl": 0.2,
     "min_curl_why": "a digit whose summed bend is under 0.2 (about 12 deg in all) has no curl to read and fails"
   }

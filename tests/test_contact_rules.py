@@ -10,10 +10,10 @@ ROLES["line_b"] = {"side": "r"}
 
 def right_hand():
     """A right hand wrapped on a pistol grip, (forward, up, left) cm: fingers run forward on the right side, across
-    the front strap to the left, then back; the thumb runs forward on the left side and closes in."""
+    the front strap to the left, then back; the thumb arches forward over the top and closes down on the left side."""
     finger = lambda u: [[0, u, -1.5], [2, u, -1.0], [2, u, 1.0], [0.5, u, 1.5]]
     return {"middle": finger(-4), "ring": finger(-6), "pinky": finger(-8),
-            "thumb": [[-3, -2, 2.0], [-1, -2, 2.0], [0.5, -2, 1.2]]}
+            "thumb": [[-12, -5, 1.0], [-9, -2, 2.0], [-7, -3, 3.0], [-4, -5, 4.5]]}
 
 
 def upside_down(joints):
@@ -81,3 +81,8 @@ def test_rules_reads_the_gun_roles_from_meaning_json(tmp_path):
 def test_an_unknown_hold_type_names_the_known_ones():
     with pytest.raises(Exception, match="pistol_grip_r"):
         C.load_rules("forend", "r")
+
+
+def test_the_thumb_is_read_about_its_own_axis():
+    row = next(d for d in C.wrap(C.load_rules("pistol_grip", "r"), right_hand())["digits"] if d["digit"] == "thumb")
+    assert row["axis"] == "+left" and row["ok"]
