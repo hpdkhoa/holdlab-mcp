@@ -1,6 +1,6 @@
 """The 8 tools of Hold Lab: tool -> (summary, [(module, function, action)]).
 
-Each action calls the existing lab function unchanged. 40 former tools.
+Each action calls the existing lab function unchanged. 40 former tools, and Step 3 contact rules (rules).
 """
 
 TOOLS = {'rig': ('Rigs: list, load, describe.',
@@ -31,7 +31,7 @@ TOOLS = {'rig': ('Rigs: list, load, describe.',
            ('poselab_mcp.server', 'arm_ranges', 'arm_ranges'),
            ('poselab_mcp.server', 'human_sizes', 'human_sizes'),
            ('poselab_mcp.server', 'body_size', 'body_size')]),
- 'hold': ('Holds: grip, purpose, solve, solve the grip, and the market-style hold presets and runs.',
+ 'hold': ('Holds: grip, purpose, solve, solve the grip, the market-style hold presets and runs, and the contact rules.',
           [('poselab_mcp.server', 'grip', 'grip'),
            ('poselab_mcp.server', 'purpose', 'purpose'),
            ('poselab_mcp.server', 'solve', 'solve'),
@@ -39,7 +39,8 @@ TOOLS = {'rig': ('Rigs: list, load, describe.',
            ('fakepose_mcp.server', 'list_presets', 'list_presets'),
            ('fakepose_mcp.server', 'show_preset', 'show_preset'),
            ('fakepose_mcp.server', 'set_preset', 'set_preset'),
-           ('fakepose_mcp.server', 'run_hands', 'run_hands')]),
+           ('fakepose_mcp.server', 'run_hands', 'run_hands'),
+           ('holdlab.contact_rules', 'rules', 'rules')]),
  'report': ('Hold and clip reports with the gate numbers.',
             [('fakepose_mcp.server', 'hold_report', 'hold'), ('fakepose_mcp.server', 'clip_report', 'clip')]),
  'clip': ('Clips: record, load, scan, fix, retarget, save, check a set.',

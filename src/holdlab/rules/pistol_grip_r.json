@@ -1,0 +1,54 @@
+{
+  "contract": "holdlab-rules/1",
+  "hold_type": "pistol_grip",
+  "hand": "r",
+  "applies_to": "a pistol held in the right hand; the gun's roles come from Object Lab Step 1 (meaning.json)",
+  "hand_parts": ["web", "palm", "thumb", "index", "middle", "ring", "pinky"],
+  "owner_order": "Owner 2026-10-23: \"1. With right hand (dominate hand). grip the back strap- straight back, deep into the webbing between the thumb & index finger. no gap. 2. Close the fingers and keep the forearm align with the gun 3. Grip the gun as high as possible under the beaver tail\"",
+  "states": {
+    "ready": {
+      "contacts": [
+        {"hand": "web", "gun": "grip_back", "kind": "point", "push": true,
+         "kind_source": "global rules, owner 2026-10-22: an exact point (the web in the crook under the grip safety)",
+         "owner": "\"grip the back strap- straight back, deep into the webbing between the thumb & index finger. no gap.\" and \"Grip the gun as high as possible under the beaver tail\""},
+        {"hand": "palm", "gun": "grip_side_r", "kind": "surface", "push": true,
+         "kind_source": "global rules, owner 2026-10-22: a surface (a palm on a panel)",
+         "owner": "\"the palm must always face in the direction of the object need to hold\"; palm faces the panel (2026-10-23 corrected answer)"},
+        {"hand": "index", "gun": "line_b", "kind": "line", "push": false,
+         "why_no_push": "close, not pressing",
+         "kind_source": "global rules, owner 2026-10-22: a line (a finger lying along the frame: anywhere along it)",
+         "owner": "\"the index can be straight in B line position without the need of touch B point, just keep it close\""},
+        {"hand": "middle", "gun": "grip_front", "kind": "line", "push": true,
+         "kind_source": "a finger wrapped across the front strap touches it along a line across the strap (global rules: a line)",
+         "owner": "\"2. Close the fingers and keep the forearm align with the gun\""},
+        {"hand": "ring", "gun": "grip_front", "kind": "line", "push": true,
+         "kind_source": "as the middle finger",
+         "owner": "\"2. Close the fingers and keep the forearm align with the gun\""},
+        {"hand": "pinky", "gun": "grip_front", "kind": "line", "push": true,
+         "kind_source": "as the middle finger",
+         "owner": "\"2. Close the fingers and keep the forearm align with the gun\""},
+        {"hand": "thumb", "gun": "thumb_rest", "kind": "surface", "push": true,
+         "kind_source": "the thumb pad rests on the safety's top face: a surface",
+         "owner": "\"thumb is on another side (left side) of index finger\" (2026-10-28); thumb on thumb_rest (2026-11-01 answer)"}
+      ],
+      "free": {}
+    },
+    "firing": {
+      "from": "ready",
+      "replace": [
+        {"hand": "index", "gun": "trigger_blade", "kind": "surface", "push": true,
+         "kind_source": "the index pad presses the blade's face: a surface (MEANING_PLAN Step 3: index pad to trigger_blade)",
+         "owner": "2026-11-01: index \"Two states\" (ready on line B, firing on the trigger blade, used for the trigger-pull load case)"}
+      ]
+    }
+  },
+  "wrap": {
+    "axis": "+up",
+    "axis_why": "a pistol grip is wrapped around its own long axis, which runs up toward the bore; MEANING_PLAN Step 3 says 'against the bore', which is across a pistol grip (flagged to the owner)",
+    "rule": "MEANING_PLAN Step 3: the fingers curl around the gun's side toward the far side, and the thumb closes from the other side",
+    "sign": {"middle": 1, "ring": 1, "pinky": 1, "thumb": -1},
+    "sign_why": "right hand: a finger runs forward across the front strap, then toward the left side: forward x left = +up. The thumb runs forward along the left side, then in toward the gun (-left): forward x -left = -up",
+    "min_curl": 0.2,
+    "min_curl_why": "a digit whose summed bend is under 0.2 (about 12 deg in all) has no curl to read and fails"
+  }
+}

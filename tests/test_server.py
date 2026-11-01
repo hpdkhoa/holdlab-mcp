@@ -18,7 +18,7 @@ def test_the_tools_are_the_cut():
 
 def test_every_former_tool_is_one_action():
     pairs = [(m, f) for _, spec in TOOLS.values() for m, f, _ in spec]
-    assert len(pairs) == len(set(pairs)) == 40
+    assert len(pairs) == len(set(pairs)) == 40 + 1  # the former tools and Step 3 rules
     for m, f in pairs:
         assert callable(getattr(importlib.import_module(m), f))
 
